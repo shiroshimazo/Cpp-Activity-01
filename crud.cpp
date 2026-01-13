@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <iomanip>
 using namespace std;
 
 void createItem(int, string, int, double);
@@ -9,6 +10,7 @@ void updateData();
 void deleteData();
 void selectMethod(string);
 void selectUser();
+void clrscrn();
 
 int itemID[99];
 string itemName[99];
@@ -68,12 +70,20 @@ void selectData() {
 
 void retrieveData() {
     cout << "\n\tCurrent Item are.....\n" << endl;
-    cout << "\n\tID\tName\tQTY\tPrice" << endl;
-
+    cout << "\t+------------+----------------------+------------+------------+" << endl;
+    cout << "\t| " << left << setw(10) << "ID" 
+         << " | " << setw(20) << "Name" 
+         << " | " << setw(10) << "QTY" 
+         << " | " << setw(10) << "Price" << " |" << endl;
+    cout << "\t+------------+----------------------+------------+------------+" << endl;
     for (int x = 0; x < dataCount; x++) {
-        cout << "\t" <<itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
-        "\t" << itemPrice[x] << endl;
-    } cout << endl;
+        cout << "\t| " << left << setw(10) << itemID[x] 
+             << " | " << setw(20) << itemName[x] 
+             << " | " << setw(10) << itemQuantity[x] 
+             << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
+    }
+    cout << "\t+------------+----------------------+------------+------------+" << endl;
+    cout << endl;
 }
 
 void updateData() {
@@ -85,9 +95,17 @@ void updateData() {
     for (int x = 0; x < dataCount; x++) {
         if (itemID[x] == searchID) {
             cout << "\n\tCurrent Data to be Update!\n" << endl;
-            cout << "\n\tID\tName\tQTY\tPrice" << endl;
-            cout << "\t" <<itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
-            "\t" << itemPrice[x] << "\t" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            cout << "\t| " << left << setw(10) << "ID" 
+                 << " | " << setw(20) << "Name" 
+                 << " | " << setw(10) << "QTY" 
+                 << " | " << setw(10) << "Price" << " |" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            cout << "\t| " << left << setw(10) << itemID[x] 
+                 << " | " << setw(20) << itemName[x] 
+                 << " | " << setw(10) << itemQuantity[x] 
+                 << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
 
             char select = 0;
             cout << "\n\tPress 1 to Update 'Item Name'." << endl;
@@ -139,9 +157,17 @@ void deleteData() {
     for (int x = 0; x < dataCount; x++) {
         if (itemID[x] == searchID) {
             cout << "\n\tCurrent Data to be Delete!\n" << endl;
-            cout << "\n\tID\tName\tQTY\tPrice" << endl;
-            cout << "\t" <<itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
-            "\t" << itemPrice[x] << "\t" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            cout << "\t| " << left << setw(10) << "ID" 
+                 << " | " << setw(20) << "Name" 
+                 << " | " << setw(10) << "QTY" 
+                 << " | " << setw(10) << "Price" << " |" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            cout << "\t| " << left << setw(10) << itemID[x] 
+                 << " | " << setw(20) << itemName[x] 
+                 << " | " << setw(10) << itemQuantity[x] 
+                 << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
 
             char confirm = 0;
             cout << "\n\tAre you sure?." << endl;
@@ -161,7 +187,7 @@ void deleteData() {
                 }
                 dataCount--;
                 cout << "\n\tRow of Data has been Deleted!\n" << endl;
-            } else if (confirm == 2) {
+            } else if (confirm == '2') {
                 cout << "Item ID not Found!\n" << endl;
             } else {
                 cout << "\n\tOut of Bounce!" << endl;
@@ -176,6 +202,7 @@ void deleteData() {
 
 void selectMethod(string typeOfUser) {
     if(typeOfUser == "admin") {
+        cout << "\n\tADMIN DASHBOARD\n";
         cout << "\n\tPress 1 to Create Data." << endl;
         cout << "\tPress 2 to Retrieve Data." << endl;
         cout << "\tPress 3 to Update Data." << endl;
@@ -243,5 +270,5 @@ void selectUser() {
 }
 
 void clrscrn() {
-    system("clear");
+    system("cls");
 }
