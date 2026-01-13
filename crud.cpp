@@ -66,7 +66,7 @@ void selectData() {
 
 void retrieveData() {
     cout << "\n\tCurrent Item are.....\n" << endl;
-    cout << "\tID\tName\tQTY\tPrice" << endl;
+    cout << "\n\tID\tName\tQTY\tPrice" << endl;
 
     for (int x = 0; x < dataCount; x++) {
         cout << itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
