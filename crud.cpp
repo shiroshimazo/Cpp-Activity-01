@@ -11,7 +11,7 @@ void selectMethod(string);
 void selectUser();
 
 int itemID[99];
-string itemNumber[99];
+string itemName[99];
 int itemQuantity[99];
 double itemPrice[99];
 int static dataCount = 0;
@@ -23,7 +23,7 @@ int main() {
 
 void createItem(int ID, string Name, int itemQty, double price) {
     itemID[dataCount] = ID;
-    itemNumber[dataCount] = Name;
+    itemName[dataCount] = Name;
     itemQuantity[dataCount] = itemQty;
     itemPrice[dataCount] = price;
     dataCount++;
@@ -65,7 +65,13 @@ void selectData() {
 }
 
 void retrieveData() {
-    
+    cout << "\n\tCurrent Item are.....\n" << endl;
+    cout << "\tID\tName\tQTY\tPrice" << endl;
+
+    for (int x = 0; x < dataCount; x++) {
+        cout << itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
+        "\t" << itemPrice[x] << endl;
+    } cout << endl;
 }
 
 void updateData() {
