@@ -131,7 +131,47 @@ void updateData() {
 }
 
 void deleteData() {
-    
+    int searchID;
+    cout << "\nDELETE SECTION\n" << endl;
+    cout << "\tPlease Enter Item ID: ";
+    cin >> searchID;
+
+    for (int x = 0; x < dataCount; x++) {
+        if (itemID[x] == searchID) {
+            cout << "\n\tCurrent Data to be Delete!\n" << endl;
+            cout << "\n\tID\tName\tQTY\tPrice" << endl;
+            cout << "\t" <<itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
+            "\t" << itemPrice[x] << "\t" << endl;
+
+            char confirm = 0;
+            cout << "\n\tAre you sure?." << endl;
+            cout << "\tPress 1 to Detele Row of Data" << endl;
+            cout << "\tPress 2 to Canceled" << endl;
+            cout << "\tResponse: ";
+            cin >> confirm;
+
+            if (confirm == '1') {
+                cout << "\n\tDeleting..." << endl;
+
+                for (int del = x; del <= dataCount - 2; del++) {
+                    itemID[del] = itemID[del+1];
+                    itemName[del] = itemName[del+1];
+                    itemQuantity[del] = itemQuantity[del+1];
+                    itemPrice[del] = itemPrice[del+1];
+                }
+                dataCount--;
+                cout << "\n\tRow of Data has been Deleted!\n" << endl;
+            } else if (confirm == 2) {
+                cout << "Item ID not Found!\n" << endl;
+            } else {
+                cout << "\n\tOut of Bounce!" << endl;
+            }
+            break;
+        }
+        if (itemID[x] != searchID && x == dataCount-1) {
+            cout << "\n\tItem ID not Found\n" << endl;
+        }
+    }
 }
 
 void selectMethod(string typeOfUser) {
