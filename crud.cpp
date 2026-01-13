@@ -188,7 +188,7 @@ void deleteData() {
                 dataCount--;
                 cout << "\n\tRow of Data has been Deleted!\n" << endl;
             } else if (confirm == '2') {
-                cout << "Item ID not Found!\n" << endl;
+                cout << "\n\tDelete Canceled!\n" << endl;
             } else {
                 cout << "\n\tOut of Bounce!" << endl;
             }
@@ -239,6 +239,52 @@ void selectMethod(string typeOfUser) {
                    selectMethod("admin");
             break;
         }
+    } else if (typeOfUser == "employee") {
+
+    } else if (typeOfUser == "customer") {
+        cout << "\n\tCUSTOMER DASHBOARD\n";
+        cout << "\n\tPress 1 to View All Items." << endl;
+        cout << "\tPress 2 to Search Item by ID" << endl;
+        cout << "\tPress 3 to Log Out Current User." << endl;
+        cout << "\tResponse: ";
+        char response;
+        cin >> response;
+
+        clrscrn();
+        
+        if (response == '1') {
+            retrieveData();
+            selectMethod("customer");
+        } else if (response == '2') {
+            int searchID;
+            cout << "\tPlease Enter Item ID: ";
+            cin >> searchID;
+
+            for (int x = 0; x < dataCount; x++) {
+                if (itemID[x] == searchID) {
+                    cout << "\n\tSearch Result: \n" << endl;
+                    cout << "\t+------------+----------------------+------------+------------+" << endl;
+                    cout << "\t| " << left << setw(10) << "ID" 
+                         << " | " << setw(20) << "Name" 
+                         << " | " << setw(10) << "QTY" 
+                         << " | " << setw(10) << "Price" << " |" << endl;
+                    cout << "\t+------------+----------------------+------------+------------+" << endl;
+                    cout << "\t| " << left << setw(10) << itemID[x] 
+                         << " | " << setw(20) << itemName[x] 
+                         << " | " << setw(10) << itemQuantity[x] 
+                         << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
+                    cout << "\t+------------+----------------------+------------+------------+" << endl;
+                } if (itemID[x] != searchID && x == dataCount-1) {
+                    cout << "\n\tItem ID not Found\n" << endl;
+                }
+            }
+            selectMethod("customer");
+        } else if (response == '3') {
+            selectUser();
+        } else {
+            cout << "\n\tInvalid Choice! Try Again!";
+            selectMethod("customer");
+        }
     }
 }
 
@@ -257,10 +303,13 @@ void selectUser() {
 
         if (username == "ADMIN" && password == "ADMIN") {
             selectMethod("admin");
+            return;
         } else if (username == "employee" && password == "emp123") {
             selectMethod("employee");
+            return;
         } else if (username == "customer" && password == "cus123") {
             selectMethod("customer");
+            return;
         } else {
             attempt --;
             cout << "\n\tUsername or Password is incorrect!" << endl;
