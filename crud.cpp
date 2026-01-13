@@ -54,6 +54,8 @@ void selectData() {
         cout << "\n\tResponse: ";
         cin >> condition;
 
+        clrscrn();
+
         if (condition == 'Y' || condition == 'y') {
             insertData = true;
         } else {
@@ -69,13 +71,63 @@ void retrieveData() {
     cout << "\n\tID\tName\tQTY\tPrice" << endl;
 
     for (int x = 0; x < dataCount; x++) {
-        cout << itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
+        cout << "\t" <<itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
         "\t" << itemPrice[x] << endl;
     } cout << endl;
 }
 
 void updateData() {
-    
+    int searchID;
+    cout << "\nUPDATE SECTION\n" << endl;
+    cout << "\tPlease Enter Item ID: ";
+    cin >> searchID;
+
+    for (int x = 0; x < dataCount; x++) {
+        if (itemID[x] == searchID) {
+            cout << "\n\tCurrent Data to be Update!\n" << endl;
+            cout << "\n\tID\tName\tQTY\tPrice" << endl;
+            cout << "\t" <<itemID[x] << "\t" << itemName[x] << "\t" << itemQuantity[x] <<
+            "\t" << itemPrice[x] << "\t" << endl;
+
+            char select = 0;
+            cout << "\n\tPress 1 to Update 'Item Name'." << endl;
+            cout << "\tPress 2 to Update 'Item Quantity'." << endl;
+            cout << "\tPress 3 to Update 'Item Price'." << endl;
+            cout << "\tResponse: ";
+            cin >> select;
+
+            clrscrn();
+
+            string newItem;
+            int newQty;
+            double newPrice;
+
+            switch (select) {
+                case '1':
+                       cout << "\nPlease Enter new 'Item Name': ";
+                       cin >> newItem;
+                       itemName[x] = newItem;
+                break;
+                case '2':
+                       cout << "\nPlease Enter new 'Item Quantity': ";
+                       cin >> newQty;
+                       itemQuantity[x] = newQty;
+                break;
+                case '3':
+                       cout << "\nPlease Enter new 'Item Price': ";
+                       cin >> newPrice;
+                       itemPrice[x] = newPrice;
+                break;
+                default:
+                       cout << "\n\tInvalid Choice! Try Again!";
+                       updateData();
+                break;
+            }
+        }
+        if (itemID[x] != searchID && x == dataCount-1) {
+            cout << "\n\tItem ID not Found!" << endl;
+        }
+    }
 }
 
 void deleteData() {
@@ -92,6 +144,8 @@ void selectMethod(string typeOfUser) {
         cout << "\tResponse: ";
         char response;
         cin >> response;
+
+        clrscrn();
 
         switch(response) {
             case '1':
@@ -131,6 +185,8 @@ void selectUser() {
         cin >> username;
         cout << "\tEnter password: ";
         cin >> password;
+
+        clrscrn();
 
         if (username == "ADMIN" && password == "ADMIN") {
             selectMethod("admin");
