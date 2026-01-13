@@ -94,23 +94,23 @@ void selectMethod(string typeOfUser) {
         cin >> response;
 
         switch(response) {
-            case 1:
+            case '1':
                   selectData();
                   selectMethod("admin");
             break;
-            case 2:
+            case '2':
                   retrieveData();
                   selectMethod("admin");
             break;
-            case 3:
+            case '3':
                   updateData();
                   selectMethod("admin");
             break;
-            case 4:
+            case '4':
                   deleteData();
                   selectMethod("admin");
             break;
-            case 5:
+            case '5':
                   selectUser();
             break;
             default:
