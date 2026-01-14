@@ -107,7 +107,7 @@ void updateData() {
                  << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
             cout << "\t+------------+----------------------+------------+------------+" << endl;
 
-            char select = 0;
+            char select = '0';
             cout << "\n\tPress 1 to Update 'Item Name'." << endl;
             cout << "\tPress 2 to Update 'Item Quantity'." << endl;
             cout << "\tPress 3 to Update 'Item Price'." << endl;
@@ -141,6 +141,7 @@ void updateData() {
                        updateData();
                 break;
             }
+            break;
         }
         if (itemID[x] != searchID && x == dataCount-1) {
             cout << "\n\tItem ID not Found!" << endl;
@@ -240,10 +241,102 @@ void selectMethod(string typeOfUser) {
             break;
         }
     } else if (typeOfUser == "employee") {
+        cout << "\n\tEMPLOYEE DASHBOARD\n";
+        cout << "\n\tPress 1 to Retrieve Data." << endl;
+        cout << "\tPress 2 to Update Data." << endl;
+        cout << "\tPress 3 to Log Out Current User." << endl;
+        cout << "\tResponse: ";
+        char response;
+        cin >> response;
+
+        clrscrn();
+
+        if (response == '1') {
+            cout << "\n\tCurrent Item are.....\n" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            cout << "\t| " << left << setw(10) << "ID" 
+                 << " | " << setw(20) << "Name" 
+                 << " | " << setw(10) << "QTY" 
+                 << " | " << setw(10) << "Price" << " |" << endl;
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            for (int x = 0; x < dataCount; x++) {
+                cout << "\t| " << left << setw(10) << itemID[x] 
+                     << " | " << setw(20) << itemName[x] 
+                     << " | " << setw(10) << itemQuantity[x] 
+                     << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
+            }
+            cout << "\t+------------+----------------------+------------+------------+" << endl;
+            cout << endl;
+        } else if (response == '2') {
+            int searchID;
+            cout << "\nUPDATE SECTION\n" << endl;
+            cout << "\tPlease Enter Item ID: ";
+            cin >> searchID;
+
+            for (int x = 0; x < dataCount; x++) {
+                if (itemID[x] == searchID) {
+                    cout << "\n\tCurrent Data to be Update!\n" << endl;
+                    cout << "\t+------------+----------------------+------------+------------+" << endl;
+                    cout << "\t| " << left << setw(10) << "ID" 
+                         << " | " << setw(20) << "Name" 
+                         << " | " << setw(10) << "QTY" 
+                         << " | " << setw(10) << "Price" << " |" << endl;
+                    cout << "\t+------------+----------------------+------------+------------+" << endl;
+                    cout << "\t| " << left << setw(10) << itemID[x] 
+                         << " | " << setw(20) << itemName[x] 
+                         << " | " << setw(10) << itemQuantity[x] 
+                         << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
+                    cout << "\t+------------+----------------------+------------+------------+" << endl;
+
+                    char select = '0';
+                    cout << "\n\tPress 1 to Update 'Item Name'." << endl;
+                    cout << "\tPress 2 to Update 'Item Quantity'." << endl;
+                    cout << "\tPress 3 to Update 'Item Price'." << endl;
+                    cout << "\tResponse: ";
+                    cin >> select;
+
+                    clrscrn();
+
+                    string newItem;
+                    int newQty;
+                    double newPrice;
+
+                    switch(select) {
+                        case '1':
+                               cout << "\nPlease Enter new 'Item Name': ";
+                               cin >> newItem;
+                               itemName[x] = newItem;
+                        break;
+                        case '2':
+                               cout << "\nPlease Enter new 'Item Quantity': ";
+                               cin >> newQty;
+                               itemQuantity[x] = newQty;
+                        break;
+                        case '3':
+                               cout << "\nPlease Enter new 'Item Price': ";
+                               cin >> newPrice;
+                               itemPrice[x] = newPrice;
+                        break;
+                        default:
+                               cout << "\n\tInvalid Choice! Try Again!";
+                               updateData();
+                        break;
+                    }
+                }
+                if (itemID[x] != searchID && x == dataCount-1) {
+                    cout << "\n\tItem ID not Found!" << endl;
+                }
+            }
+        } else if (response == '3') {
+            selectUser();
+        } else {
+            cout << "\n\tInvalid Choice! Please Try again!" << endl;
+            selectMethod("employee");
+        }
 
     } else if (typeOfUser == "customer") {
         cout << "\n\tCUSTOMER DASHBOARD\n";
-        cout << "\n\tPress 1 to View All Items." << endl;
+        cout << "\n\tPress 1 to Retrieve Data." << endl;
         cout << "\tPress 2 to Search Item by ID" << endl;
         cout << "\tPress 3 to Log Out Current User." << endl;
         cout << "\tResponse: ";
@@ -274,6 +367,7 @@ void selectMethod(string typeOfUser) {
                          << " | " << setw(10) << itemQuantity[x] 
                          << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
                     cout << "\t+------------+----------------------+------------+------------+" << endl;
+                    break;
                 } if (itemID[x] != searchID && x == dataCount-1) {
                     cout << "\n\tItem ID not Found\n" << endl;
                 }
