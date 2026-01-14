@@ -252,21 +252,8 @@ void selectMethod(string typeOfUser) {
         clrscrn();
 
         if (response == '1') {
-            cout << "\n\tCurrent Item are.....\n" << endl;
-            cout << "\t+------------+----------------------+------------+------------+" << endl;
-            cout << "\t| " << left << setw(10) << "ID" 
-                 << " | " << setw(20) << "Name" 
-                 << " | " << setw(10) << "QTY" 
-                 << " | " << setw(10) << "Price" << " |" << endl;
-            cout << "\t+------------+----------------------+------------+------------+" << endl;
-            for (int x = 0; x < dataCount; x++) {
-                cout << "\t| " << left << setw(10) << itemID[x] 
-                     << " | " << setw(20) << itemName[x] 
-                     << " | " << setw(10) << itemQuantity[x] 
-                     << " | " << setw(10) << fixed << setprecision(2) << itemPrice[x] << " |" << endl;
-            }
-            cout << "\t+------------+----------------------+------------+------------+" << endl;
-            cout << endl;
+            retrieveData();
+            selectMethod("employee");
         } else if (response == '2') {
             int searchID;
             cout << "\nUPDATE SECTION\n" << endl;
